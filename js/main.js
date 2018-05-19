@@ -128,84 +128,29 @@ jQuery(document).ready(function ($) {
     /*---------------------------
                                   Form submit
     ---------------------------*/
-    $('.ajax-form').on('submit', function (event) {
-        event.preventDefault();
-        var data = new FormData(this);
-        $(this).find('button').prop('disabled', true);
-        $.ajax({
-            url: theme.url + '/forms.php',
-            type: 'POST',
-            data: data,
-            cache: false,
-            contentType: false,
-            processData: false,
-            success: function (result) {
-                if (result.status == 'ok') {
-                    openPopup('#modal-popup-ok')
+    $('.js-mailchimp-form').each(function(index, el) {
+        var form = $(this);
+
+        form.ajaxChimp({
+            url: 'https://online.us17.list-manage.com/subscribe/post?u=b208efabffc40996334e17c12&id=f6454771d8',
+            callback: function(result){
+                if ( result.result == 'error' ) {
+                    var message = result.msg.replace('0 - ', "");
+                    var $alert = '<div class="alert alert-danger" style="display: none;">'+message+'</div>';
+                    form.find('.alerts').html($alert);
+                    form.find('.alerts .alert').slideDown();
                 } else {
-                    openPopup('#modal-popup-error')
+                    var message = result.msg.replace('0 - ', "");
+                    var $alert = '<div class="alert alert-success" style="display: none;">'+message+'</div>';
+                    form.find('.alerts').html($alert);
+                    form.find('.alerts .alert').slideDown();
+                    form[0].reset();
                 }
-            },
-            error: function (result) {
-                openPopup('#modal-popup-error');
             }
-        }).always(function () {
-            $('form').each(function (index, el) {
-                $(this)[0].reset();
-                $(this).find('button').prop('disabled', false);
-            });
         });
     });
 
 
-
-    /*---------------------------
-                                  Google map init
-    ---------------------------*/
-    var map;
-
-    function googleMap_initialize() {
-        var lat = $('#map_canvas').data('lat');
-        var long = $('#map_canvas').data('lng');
-
-        var mapCenterCoord = new google.maps.LatLng(lat, long);
-        var mapMarkerCoord = new google.maps.LatLng(lat, long);
-
-        var styles = [];
-
-        var mapOptions = {
-            center: mapCenterCoord,
-            zoom: 16,
-            //draggable: false,
-            disableDefaultUI: true,
-            scrollwheel: false,
-            mapTypeId: google.maps.MapTypeId.ROADMAP
-        };
-
-        map = new google.maps.Map(document.getElementById('map_canvas'), mapOptions);
-
-        var styledMapType = new google.maps.StyledMapType(styles, {
-            name: 'Styled'
-        });
-        map.mapTypes.set('Styled', styledMapType);
-        map.setMapTypeId('Styled');
-
-        var markerImage = new google.maps.MarkerImage('images/location.png');
-        var marker = new google.maps.Marker({
-            icon: markerImage,
-            position: mapMarkerCoord,
-            map: map,
-            title: "Site Title"
-        });
-
-        $(window).resize(function () {
-            map.setCenter(mapCenterCoord);
-        });
-    }
-
-    if (exist('#map_canvas')) {
-        googleMap_initialize();
-    }
 
 
     function update_widgets ( data ) {
