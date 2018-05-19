@@ -1,98 +1,21 @@
 .btn
-    height: 50px
-    left: 50px
-    display: inline-block  
-/* ------------------------------------ */
-/*  SLICK ARROWS  */
-.slick-arrow,
-.slick-arrow:focus,
-.slick-arrow:active,
-.slick-arrow:hover
-	+transition(all, .2s)
-	width: 70px
-	height: 90px
-	z-index: 10
-	background-color:  peru
-	-webkit-border-radius: 2px
-	border-radius: 2px
-	background-repeat: no-repeat
-	background-position: 50% 50%
-	-webkit-background-size: 23px 20px
-	-o-background-size: 23px 20px
-	background-size: 23px 20px
-
-	@media (max-width: 800px)
-		width: 50px
-		height: 70px
-
-	@media (max-width: 600px)
-		width: 30px
-		height: 50px
-		-webkit-background-size: 16px 16px
-		-o-background-size: 16px 16px
-		background-size: 16px 16px
-
-	&:before
-		display: none
-
-.slick-arrow:hover
-	opacity: .8
-
-.slick-next,
-.slick-next:hover,
-.slick-next:focus
-	right: 0
-	background-image: url("../images/right-arrow.svg")
-
-.slick-prev,
-.slick-prev:hover,
-.slick-prev:focus
-	left: 0
-	background-image: url("../images/left-arrow.svg")
-
-
-.input.file
-    position: relative
-    padding: 0!important
-
-    &:after
-        content: '';
-        width: 38px;
-        height: 38px;
-        border-radius: 6px
-        background-color: #fdbf2d
-        background-size: 20px;
-        background-repeat: no-repeat;
-        background-position: 50% 50%;
-        background-image: url(../images/upload.svg);
-        position: absolute;
-        top: 50%;
-        right: 21px;
-        -webkit-transform: translate(50%, -50%);
-        -ms-transform: translate(50%, -50%);
-        -o-transform: translate(50%, -50%);
-        transform: translate(50%, -50%);
-        pointer-events: none;
-
-    input[type="file"] 
-        width: 100%;
-        height: 100%;
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0
-        bottom: 0
-        z-index: 2;
-        opacity: 0;
-        cursor: pointer;
-
-        &::-webkit-file-upload-button
-            cursor: pointer;
-
-
-    span
-        +textEnd();
-        display: block
-        height: 100%
-        padding: 0 55px 0 15px
-        text-align: left
+	height: 50px
+	display: inline-block  
+	line-height: 20px
+	font-size: 17px
+	font-weight: 400
+	border: 0
+	padding: 15px 40px
+	text-align: center
+	border-radius: 25px
+	box-shadow: 0px 0px 35px 0px rgba(0,0,0,0.15)
+	cursor: pointer
+	transition: all 0.3s ease
+	
+	&-primary
+		background-color: $primary-color
+		color: #fff
+		
+	&-secondary
+		background-color: #FFF
+		color: $primary-color 

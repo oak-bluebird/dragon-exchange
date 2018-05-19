@@ -1,0 +1,101 @@
+.footer
+	background-color: #141448 
+	padding: 130px 0 60px
+	background-image: url(../images/footer.jpg)
+	background-size: cover  
+	background-repeat: no-repeat 
+	background-position: 50% 50% 
+	
+
+	&-nav
+		border-width: 1px 0 1px 0
+		border-style: solid
+		border-color: #c1c1c1
+		padding: 45px 0
+
+
+
+.footer-socials
+	padding-bottom: 45px 
+
+	ul
+		display: flex
+		align-items: center
+		justify-content: flex-end
+		list-style: none 
+		margin: 0 -10px
+	
+	.social-item
+		width: 40px
+		height: 40px
+		padding: 8px
+		border-radius: 50%
+		border: 1px solid #fff
+		overflow: hidden
+		display: block
+		transition: all 0.3s ease
+		margin: 0 10px
+		
+		svg
+			display: block
+			width: 100%
+			
+			.st0
+				fill: #fff
+				
+		&.fb:hover
+			background-color: $facebook-color
+			border-color: $facebook-color
+			
+		&.twtr:hover
+			background-color: $twitter-color
+			border-color: $twitter-color 
+			
+		&.inst:hover
+			background-color: $instagram-color
+			border-color: $instagram-color 
+				
+
+
+.footer-menu
+	font-size: 16px
+	color: #fff
+	
+	& > ul
+		display: flex
+		align-items: flex-start
+		justify-content: flex-start
+		
+	li
+		list-style: none 
+		
+	a
+		color: inherit
+		
+		&:hover
+			text-decoration: underline
+			
+
+	& > ul > li
+		&:not(:last-child)
+			margin-right: 90px 
+			
+		.sub-menu
+			padding-top: 22px
+			font-size: 0.875em 
+			
+			li
+				&:not(:last-child)
+					margin-bottom: 10px 
+					
+
+
+
+.footer-payment
+	text-align: right
+	
+	h3
+		font-size: 16px
+		font-weight: 400
+		color: #fff
+		margin-bottom: 22px   
