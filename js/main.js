@@ -199,4 +199,85 @@ jQuery(document).ready(function($) {
         googleMap_initialize();
     }
 
+
+    function update_widgets ( data ) {
+        //console.log( data );
+
+        var fallClass = 'falling';
+        var riseClass = 'rising';
+
+        $.each( data.RAW, function(index, val) {
+            
+            var widget = $('#' + index + 'DRG');
+
+            var changePt = widget.find('.change-pt .value');
+            var price = widget.find('.price');
+
+            changePt.text( data.DISPLAY[index].DRG.CHANGEPCT24HOUR + '%' );
+
+            if ( data.DISPLAY[index].DRG.CHANGEPCT24HOUR > 0 ) {
+                changePt.addClass( riseClass );
+                changePt.removeClass( fallClass );
+            } else if ( data.DISPLAY[index].DRG.CHANGEPCT24HOUR < 0 ) {
+                changePt.addClass( fallClass );
+                changePt.removeClass( riseClass );
+            } else {
+                changePt.removeClass( fallClass );
+                changePt.removeClass( riseClass );
+            }
+
+            
+
+            var oldPrice = price.attr('data-price');
+            var newPrice = data.RAW[index].DRG.PRICE;
+
+            price.attr('data-price', newPrice );
+            price.text( Number(newPrice).toFixed(2) + ' DRG' );
+
+            if ( oldPrice ) {
+                if ( oldPrice > newPrice ) {
+                    price.addClass(fallClass);
+                    setTimeout(function () { 
+                        price.removeClass(fallClass);
+                    }, 1500);
+
+                } else if ( oldPrice < newPrice ) {
+                    price.addClass(riseClass);
+                    setTimeout(function () { 
+                        price.removeClass(riseClass);
+                    }, 1500);
+                }
+            }
+
+        });
+    }
+
+
+    function load_data() {
+
+        var url = 'https://min-api.cryptocompare.com/data/pricemultifull?fsyms=ETH,BTC&tsyms=DRG';
+
+        $.ajax({
+            type: 'GET',
+            url: url,
+            data: null,
+            cache: false,
+            success: function (data, textStatus, jQxhr) {
+
+                    update_widgets ( data );
+
+            },
+            error: function (jqXhr, textStatus, errorThrown) {
+                console.log(jqXhr);
+            }
+        })
+
+    }
+
+    load_data();
+    setInterval(function(){
+       load_data();
+    }, 2000); 
+
+
 }); // end file
