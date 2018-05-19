@@ -25,8 +25,6 @@ function exist(el){
 
 jQuery(document).ready(function($) {
 
-    $(".header").headroom();
-    
     /*---------------------------
                                   ADD CLASS ON SCROLL
     ---------------------------*/
