@@ -32,7 +32,7 @@
                 </div>
 
                 <div class="col-auto text-right">
-                    <a href="#" class="btn btn-primary">
+                    <a href="#modal-popup" class="btn btn-primary fancybox">
                         <span>Register</span>
                     </a>
                 </div>
@@ -237,7 +237,8 @@
                         <h3 class="feature__title">Instant Buy/Sell</h3>
                         <div class="feature__desc">
                             <p>Buy & Sell without having to transfer money to an exchange or waiting for someone to fill your
-                                order</p>
+                                order
+                            </p>
                         </div>
                     </div>
                 </div>
@@ -406,7 +407,18 @@
         </div>
     </footer>
 
-    <div id="modal-popup" class="fncb-hide zoom-anim-dialog popup"></div>
+    <div id="modal-popup" class="fncb-hide zoom-anim-dialog popup">
+        <h2>Subscribe to Newsletter</h2>
+        <form action="" class="mailchimp-form js-mailchimp-form mailchimp-form--dark">
+            <div class="form-group">
+                <input type="email" name="EMAIL" placeholder="Email" class="form-control">
+            </div>
+            <div class="alerts"></div>
+            <button class="btn btn-primary">
+                <span>Send</span>
+            </button>
+        </form>
+    </div>
 
     <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
         crossorigin="anonymous"></script>
