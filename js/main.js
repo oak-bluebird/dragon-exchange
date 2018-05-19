@@ -6,16 +6,16 @@ window.params = {
 
 
 /**
-     *
-     * Check if element exist on page
-     *
-     * @param el {string} jQuery object (#popup)
-     *
-     * @return {bool}
-     *
-*/
-function exist(el){
-    if ( $(el).length > 0 ) {
+ *
+ * Check if element exist on page
+ *
+ * @param el {string} jQuery object (#popup)
+ *
+ * @return {bool}
+ *
+ */
+function exist(el) {
+    if ($(el).length > 0) {
         return true;
     } else {
         return false;
@@ -23,20 +23,27 @@ function exist(el){
 }
 
 
-jQuery(document).ready(function($) {
+jQuery(document).ready(function ($) {
 
-    $(".header").headroom();
-    
+    wow = new WOW({
+        boxClass: 'wow', // default
+        animateClass: 'animated', // default
+        offset: 200, // default
+        mobile: false, // default
+        live: true // default
+    })
+    wow.init();
+
     /*---------------------------
                                   ADD CLASS ON SCROLL
     ---------------------------*/
-    $(function() { 
+    $(function () {
         var $document = $(document),
             $element = $('.toggle-menu'),
             $element2 = $('header'),
             className = 'hasScrolled';
 
-        $document.scroll(function() {
+        $document.scroll(function () {
             $element.toggleClass(className, $document.scrollTop() >= 1);
             $element2.toggleClass(className, $document.scrollTop() >= 1);
         });
@@ -46,32 +53,32 @@ jQuery(document).ready(function($) {
     /*---------------------------
                                   File input logic
     ---------------------------*/
-    $('input[type=file]').each(function(index, el) {
-        $(this).on('change', function(event) {
+    $('input[type=file]').each(function (index, el) {
+        $(this).on('change', function (event) {
             event.preventDefault();
             var placeholder = $(this).siblings('.placeholder');
-        
-            if ( this.files.length > 0 ) {
-                if ( this.files[0].size < 5000000 ) {
+
+            if (this.files.length > 0) {
+                if (this.files[0].size < 5000000) {
                     var filename = $(this).val().split('/').pop().split('\\').pop();
-                    if ( filename == '' ) {
+                    if (filename == '') {
                         filename = placeholder.attr('data-label');
                     }
                     placeholder.text(filename);
                 } else {
                     alert('Maximum file size is 5Mb');
-                }    
+                }
             } else {
-                placeholder.text( placeholder.attr('data-label') );
+                placeholder.text(placeholder.attr('data-label'));
             }
-            
+
         });
     });
-    
+
     /*---------------------------
                                 PAGE ANCHORS
     ---------------------------*/
-    $('.page-menu a, .anchor').click(function() {
+    $('.page-menu a, .anchor').click(function () {
         $('html, body').animate({
             scrollTop: $($(this).attr('href')).offset().top - 50
         }, 800);
@@ -81,7 +88,7 @@ jQuery(document).ready(function($) {
     /*---------------------------
                                   MENU TOGGLE
     ---------------------------*/
-    $('.js-toggle-menu').on('click', function(event) {
+    $('.js-toggle-menu').on('click', function (event) {
         event.preventDefault();
         $(this).toggleClass('is-active');
         $(this).siblings('header').toggleClass('open');
@@ -93,7 +100,7 @@ jQuery(document).ready(function($) {
                                   Fancybox
     ---------------------------*/
     $('.fancybox').fancybox({
-        
+
     });
 
 
@@ -105,16 +112,14 @@ jQuery(document).ready(function($) {
      *
      * @return n/a
      *
-    */
-    function openPopup(popup){
-        $.fancybox.open([
-            {
-                src  : popup,
-                type: 'inline',
-                opts : {}
-            }
-        ], {
-            loop : false
+     */
+    function openPopup(popup) {
+        $.fancybox.open([{
+            src: popup,
+            type: 'inline',
+            opts: {}
+        }], {
+            loop: false
         });
     }
 
@@ -123,7 +128,7 @@ jQuery(document).ready(function($) {
     /*---------------------------
                                   Form submit
     ---------------------------*/
-    $('.ajax-form').on('submit', function(event) {
+    $('.ajax-form').on('submit', function (event) {
         event.preventDefault();
         var data = new FormData(this);
         $(this).find('button').prop('disabled', true);
@@ -134,18 +139,18 @@ jQuery(document).ready(function($) {
             cache: false,
             contentType: false,
             processData: false,
-            success: function(result) {
+            success: function (result) {
                 if (result.status == 'ok') {
                     openPopup('#modal-popup-ok')
                 } else {
                     openPopup('#modal-popup-error')
                 }
             },
-            error: function(result) {
+            error: function (result) {
                 openPopup('#modal-popup-error');
             }
-        }).always(function() {
-            $('form').each(function(index, el) {
+        }).always(function () {
+            $('form').each(function (index, el) {
                 $(this)[0].reset();
                 $(this).find('button').prop('disabled', false);
             });
@@ -158,6 +163,7 @@ jQuery(document).ready(function($) {
                                   Google map init
     ---------------------------*/
     var map;
+
     function googleMap_initialize() {
         var lat = $('#map_canvas').data('lat');
         var long = $('#map_canvas').data('lng');
@@ -178,24 +184,26 @@ jQuery(document).ready(function($) {
 
         map = new google.maps.Map(document.getElementById('map_canvas'), mapOptions);
 
-        var styledMapType=new google.maps.StyledMapType(styles,{name:'Styled'});
-        map.mapTypes.set('Styled',styledMapType);
+        var styledMapType = new google.maps.StyledMapType(styles, {
+            name: 'Styled'
+        });
+        map.mapTypes.set('Styled', styledMapType);
         map.setMapTypeId('Styled');
 
         var markerImage = new google.maps.MarkerImage('images/location.png');
         var marker = new google.maps.Marker({
             icon: markerImage,
-            position: mapMarkerCoord, 
+            position: mapMarkerCoord,
             map: map,
-            title:"Site Title"
+            title: "Site Title"
         });
-        
-        $(window).resize(function (){
+
+        $(window).resize(function () {
             map.setCenter(mapCenterCoord);
         });
     }
 
-    if ( exist( '#map_canvas' ) ) {
+    if (exist('#map_canvas')) {
         googleMap_initialize();
     }
 
