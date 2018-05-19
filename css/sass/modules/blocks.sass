@@ -13,6 +13,9 @@
 .feature
 	text-align: center
 	
+	@media (max-width: 767px)
+		margin-bottom: 60px 
+	
 	&__icon
 		width: 100px
 		height: 100px
@@ -24,14 +27,24 @@
 		justify-content: center
 		margin: 0 auto
 		
+		@media (max-width: 1199px)
+			width: 80px
+			height: 80px
+		
 		img
-			width: 45px
+			width: 45%
 		
 
 	&__title
 		font-size: 36px
 		font-weight: 400
 		padding: 15px 0 5px  
+		
+		@media (max-width: 1199px)
+			font-size: 32px 
+			
+		@media (max-width: 991px)
+			font-size: 28px
 		
 	&__desc
 		width: 100%
