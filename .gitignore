@@ -1,0 +1,5 @@
+*.config
+css/*.css
+css/*.css.map
+css/sass/*.css
+css/sass/*.css.map
