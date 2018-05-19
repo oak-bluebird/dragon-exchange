@@ -6,10 +6,33 @@
 	margin-bottom: -75px
 	position: relative 
 	
+	@media (max-width: 1199px)
+		padding: 40px
+		margin-bottom: -65px 
+		
+	@media (max-width: 991px)
+		margin-bottom: 0 
+		
+	@media (max-width: 575px)
+		padding: 25px 15px
+	
 	h2
 		font-size: 36px
 		font-weight: 400
 		color: #fff  
+		
+		@media (max-width: 1199px)
+			font-size: 32px 
+			
+		@media (max-width: 767px)
+			font-size: 28px
+			
+		@media (max-width: 575px)
+			font-size: 26px  
+			
+		@media (max-width: 480px)
+			font-size: 24px
+
 		
 
 
@@ -17,6 +40,14 @@
 .mailchimp-form
 	position: relative
 	padding-right: 150px 
+	
+	@media (max-width: 991px)
+		max-width: 500px
+		margin: 20px auto 0 
+		
+	@media (max-width: 575px)
+		padding-right: 0 
+		max-width: 320px 
 	
 
 	.form-control
@@ -41,6 +72,16 @@
 		right: 0
 		transform: translateY(-50%)
 		
+		@media (max-width: 575px)
+			position: relative
+			margin-top: 15px
+			//width: 200px
+			max-width: 100%
+			margin-left: auto 
+			margin-right: auto 
+			display: block
+			transform: none  
+		
 
 	.alerts
 		padding-top: 10px
@@ -48,6 +89,12 @@
 		left: 0
 		top: 100% 
 		width: 100%
+		
+		@media (max-width: 991px)
+			position: static
+			
+			.alert
+				margin-bottom: 15px 
 		
 
 

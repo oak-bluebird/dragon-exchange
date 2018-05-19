@@ -7,17 +7,30 @@
 	background-position: 50% 50% 
 	background-attachment: fixed
 	
+	@media (max-width: 991px)
+		padding: 35px 0
+	
 
 	&-nav
 		border-width: 1px 0 1px 0
 		border-style: solid
 		border-color: #c1c1c1
 		padding: 45px 0
+		
+		@media (max-width: 991px)
+			padding: 35px 0
+			
+		@media (max-width: 767px)
+			padding-bottom: 0
+			border-bottom: 0 
 
 
 
 .footer-socials
 	padding-bottom: 45px 
+	
+	@media (max-width: 991px)
+		padding-bottom: 35px 
 
 	ul
 		display: flex
@@ -25,6 +38,9 @@
 		justify-content: flex-end
 		list-style: none 
 		margin: 0 -10px
+		
+		@media (max-width: 991px)
+			justify-content: center
 	
 	.social-item
 		width: 40px
@@ -62,10 +78,20 @@
 	font-size: 16px
 	color: #fff
 	
+	@media (max-width: 575px)
+		font-size: 15px 
+		
+	@media (max-width: 480px)
+		font-size: 14px
+		
+	@media (max-width: 420px)
+		font-size: 13px  
+	
 	& > ul
 		display: flex
 		align-items: flex-start
 		justify-content: flex-start
+		flex-wrap: wrap
 		
 	li
 		list-style: none 
@@ -81,19 +107,31 @@
 		&:not(:last-child)
 			margin-right: 90px 
 			
+			@media (max-width: 1199px)
+				margin-right: 60px 
+				
+		@media (max-width: 991px)
+			margin-right: 0!important
+			width: 33.33%
+			padding-right: 0.5em 
+		
 		.sub-menu
-			padding-top: 22px
+			padding-top: 1.5em
 			font-size: 0.875em 
 			
 			li
 				&:not(:last-child)
-					margin-bottom: 10px 
+					margin-bottom: 0.75em
 					
 
 
 
 .footer-payment
 	text-align: right
+	
+	@media (max-width: 767px)
+		text-align: center
+		padding-top: 35px 
 	
 	h3
 		font-size: 16px
